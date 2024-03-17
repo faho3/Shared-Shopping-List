@@ -7,19 +7,15 @@
 </head>
 <body>
     <h1>Shared Shopping List</h1>
-    <form method="POST">
-        <input type="text" name="item" placeholder="Enter an item">
+    <form action="/" method="POST">
+        <label for="item">Enter an item:</label>
+        <input type="text" id="item" name="item">
         <button type="submit">Add Item</button>
     </form>
     <h2>Shopping List</h2>
     <ul>
-        {% for index, item in shopping_list %}
-            <li>
-                {{ item }}
-                <form action="/delete/{{ index }}" method="POST" style="display:inline;">
-                    <button type="submit">Remove</button>
-                </form>
-            </li>
+        {% for index, item in enumerate(shopping_list) %}
+        <li>{{ item }} <form action="/remove/{{ index }}" method="POST"><button type="submit">Remove</button></form></li>
         {% endfor %}
     </ul>
 </body>
